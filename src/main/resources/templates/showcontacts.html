@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Contact List</title>
+</head>
+<body>
+<div th:insert="~{Components/userHeader :: head}"></div>
+
+<div class="sidebar-content">
+	<div th:insert="~{Components/userHeader :: sideNav}"></div>
+
+	
+	<div class="content">
+		<table class = "table table-condensed">
+			<tr>
+				<th>Contact Name</th>
+				<th>Phone</th>
+				<th>Email</th>
+				<th>Image</th>
+				<th>Actions</th>
+			</tr>
+			
+			
+			<tr th:each="contact: ${listContact}">
+				<td th:text="${contact.name}" />
+			    <td th:text="${contact.phone}" />
+			    <td th:text="${contact.email}" />
+			    <td>
+			   	<img  class="my_profile_picture" th:src="@{'/img/'+${contact.image}}"/>
+			   	</td>
+			    <td>
+			    <a th:href="@{/user/edit/{cid}(cid=${contact.id})}"> Update</a>
+			    <a th:href="@{/user/delete/{cid}(cid=${contact.id})}"> Delete</a>
+			    </td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+
+</body>
+</html>
